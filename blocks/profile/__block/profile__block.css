@@ -1,0 +1,12 @@
+.profile__block {
+    display: flex;
+    align-items: baseline;
+    max-width: 282px;
+}
+
+@media (min-width: 520px) {
+    .profile__block {
+        width: 100%;
+        max-width: 336px;
+    }
+}

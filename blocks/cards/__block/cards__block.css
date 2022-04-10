@@ -1,0 +1,10 @@
+.cards__block {
+    max-width: 282px;
+    margin: 0 auto 20px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}

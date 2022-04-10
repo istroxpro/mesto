@@ -1,0 +1,15 @@
+.cards__likeButton_active {
+    padding: 0;
+    margin-right: 30px;
+    display: block;
+    background-image: url(../../../../images/likeactive.png);
+    border: none;
+    width: 22px;
+    height: 19px;
+    align-self: center;
+}
+
+.cards__likeButton_active:hover {
+    cursor: pointer;
+    opacity: .5;
+}
