@@ -1,15 +1,15 @@
-.cards__likeButton {
+.cards__like-button_active {
     padding: 0;
     margin-right: 30px;
     display: block;
-    background-color: white;
+    background-image: url(../../../../images/Union.svg);
     border: none;
     width: 22px;
     height: 19px;
     align-self: center;
 }
 
-.cards__likeButton:hover {
+.cards__like-button_active:hover {
     cursor: pointer;
     opacity: .5;
 }

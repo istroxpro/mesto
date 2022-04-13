@@ -9,7 +9,7 @@
 }
 
 @media (min-width: 520px) {
-    .footer_copyright {
+    .footer__copyright {
         font-size: 18px;
         line-height: 22px;
     }
