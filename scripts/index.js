@@ -4,18 +4,18 @@ const popup = document.querySelector('.popup')
 const popupOpenBtn = document.querySelector('.profile__edit-button')
 const popupCloseBtn = popup.querySelector('.popup__close')
 const formElement = document.querySelector('.popup__form')
-const nameInput = document.querySelector('.popup__input_profile-name')
-const jobInput = document.querySelector('.popup__input_profile-description')
+const nameInput = document.querySelector('.popup__input_profile_name')
+const jobInput = document.querySelector('.popup__input_profile_description')
 const yourName = document.querySelector('.profile__title')
 const description = document.querySelector('.profile__subtitle')
-const like = document.getElementsByClassName('cards__likeButton')
+const like = document.getElementsByClassName('cards__like-button')
 
 // Функции.
 
 function popupOpen() {
     popup.classList.add('popup_opened')
-    nameInput.textContent = yourName.value
-    jobInput.textContent = description.value
+    yourName.value = nameInput.textcontent
+    description.value = jobInput.textcontent
 }
 
 function popupClose() {
