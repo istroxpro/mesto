@@ -14,8 +14,8 @@ const like = document.getElementsByClassName('cards__like-button')
 
 function popupOpen() {
     popup.classList.add('popup_opened')
-    yourName.value = nameInput.textcontent
-    description.value = jobInput.textcontent
+    nameInput.value = yourName.textContent
+    jobInput.value = description.textContent
 }
 
 function popupClose() {
