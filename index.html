@@ -30,42 +30,6 @@
             </section>
             <section class="blocks">
                 <ul class="cards">
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
-                    <li class="cards__block">
-                        <img src="./images/dombi.png" alt="Картинка" class="cards__image">
-                        <h2 class="cards__title">Домбай</h2>
-                        <button type="button" class="cards__like-button"><img src="./images/likenohover.svg"
-                                alt="Лайк"></button>
-                    </li>
                 </ul>
             </section>
         </main>
@@ -86,7 +50,39 @@
                 </form>
             </div>
         </div>
+        <div class="popup popup_gallery">
+            <div class="popup__container popup__container_gallery">
+                <form class="popup__form popup__form_gallery" name="gallery">
+                    <button type="button" class="popup__close popup__close_gallery"><img class="popup__close-image"
+                            src="./images/Closeicon.svg" alt="Закрыть"></button>
+                    <h2 class="popup__title">Новое место</h2>
+                    <input class="popup__input popup__input_gallery_name" type="text" placeholder="Название" name="name"
+                        required>
+                    <input class="popup__input popup__input_gallery_url" type="url" placeholder="Ссылка на картинку"
+                        name="imageLink" required>
+                    <button type="submit" class="popup__submit-button popup__submit-button_gallery">Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_image">
+            <div class="popup__container popup__container_image">
+                <div class="popup__figure">
+                    <img src="#" alt="" class="popup_image_img">
+                    <p class="popup__title popup__title_image"></p>
+                    <button type="button" class="popup__close popup__close_image"><img class="popup__close-image"
+                            src="./images/Closeicon.svg" alt="Закрыть"></button>
+                </div>
+            </div>
+        </div>
     </div>
+    <template class="cards__template">
+        <li class="cards__block">
+            <img src="./images/dombi.png" alt="" class="cards__image">
+            <h2 class="cards__title"></h2>
+            <button type="button" class="cards__like-button"><img src="./images/likenohover.svg" alt="Лайк"></button>
+            <button type="button" class="cards__delete-button"><img src="./images/Trash.svg" alt="Удалить"></button>
+        </li>
+    </template>
     <script src="scripts/index.js"></script>
 </body>
 
