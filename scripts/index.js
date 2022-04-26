@@ -58,7 +58,7 @@ initialCards.map(renderCards);
 
 // ПЕРЕМЕННЫЕ ПРЕДПРОСМОТРА КАРТОЧЕК (сидят здесь, потому что до рендеринга не работают)
 
-const imagePopup = document.querySelector('.popup_image');
+const imagePopup = document.querySelector('.popup_view');
 const imageExpand = document.querySelectorAll('.cards__image');
 const imageCloseButton = imagePopup.querySelector('.popup__close_image')
 
@@ -137,7 +137,7 @@ function cardRemove(evt) {
 
 function imageView(evt) {
     imagePopup.classList.toggle('popup_opened')
-    const imageView = document.querySelector('.popup_image_img')
+    const imageView = document.querySelector('.popup__figure_img')
     imageView.src = evt.target.src;
     const imageText = document.querySelector('.popup__title_image')
     imageText.textContent = evt.target.alt;
