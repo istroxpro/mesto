@@ -137,7 +137,7 @@ function cardRemove(evt) {
 
 function imageView(evt) {
     imagePopup.classList.toggle('popup_opened')
-    const imageView = document.querySelector('.popup_img')
+    const imageView = document.querySelector('.popup__imgs')
     imageView.src = evt.target.src;
     const imageText = document.querySelector('.popup__title_image')
     imageText.textContent = evt.target.alt;
