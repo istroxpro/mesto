@@ -1,18 +1,17 @@
 'use strict'
 // ПЕРЕМЕННЫЕ
 
-const IdPopup = document.querySelector('.popup');
+const idPopup = document.querySelector('.popup');
 const galleryPopup = document.querySelector('.popup_gallery');
 const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close_gallery');
 const popupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = IdPopup.querySelector('.popup__close');
+const popupCloseButton = idPopup.querySelector('.popup__close');
 const formElement = document.querySelector('.popup__form');
 const formElementGallery = document.querySelector('.popup__form_gallery');
 const nameInput = document.querySelector('.popup__input_profile_name');
 const jobInput = document.querySelector('.popup__input_profile_description');
 const yourName = document.querySelector('.profile__title');
 const description = document.querySelector('.profile__subtitle');
-const like = document.getElementsByClassName('cards__like-button');
 const closeButton = document.getElementsByClassName('cards__delete-button')
 const cardsTemplate = document.querySelector('.cards__template').content;
 const card = document.querySelector('.cards');
@@ -54,110 +53,105 @@ const initialCards = [{
     }
 ];
 
-
-
-// ПЕРЕМЕННЫЕ ПРЕДПРОСМОТРА КАРТОЧЕК (сидят здесь, потому что до рендеринга не работают)
-
 const imagePopup = document.querySelector('.popup_view');
 const imageExpand = document.querySelectorAll('.cards__image');
 const imageCloseButton = imagePopup.querySelector('.popup__close_image');
 const imageView = document.querySelector('.popup__imgs');
 const imageText = document.querySelector('.popup__title_image');
 
-
 // ФУНКЦИИ
 
-function renderCards(card) {
+function createCard(title, image) {
     const cardsElem = cardsTemplate.querySelector('.cards__block').cloneNode(true);
-    cardsElem.querySelector('.cards__image').src = card.link;
-    cardsElem.querySelector('.cards__image').alt = card.alt;
-    cardsElem.querySelector('.cards__title').textContent = card.name;
+    const cardTitle = cardsElem.querySelector('.cards__title');
+    const cardImage = cardsElem.querySelector('.cards__image')
+    cardImage.src = image;
+    cardImage.alt = title;
+    cardTitle.textContent = title;
     cardsElem.querySelector('.cards__like-button').addEventListener('click', likeIt);
     cardsElem.querySelector('.cards__delete-button').addEventListener('click', cardRemove);
     cardsElem.querySelector('.cards__image').addEventListener('click', imagePreview);
     imageCloseButton.addEventListener('click', imagePreview);
-    renderCard(cardsElem);
+
+    // ФУНКЦИЯ ЛАЙКА
+
+    function likeIt() {
+        this.classList.toggle('cards__like-button_active')
+    };
+
+    // ФУНКЦИЯ УДАЛЕНИЯ КАРТОЧКИ
+
+    function cardRemove(evt) {
+        evt.target.closest('.cards__block').remove()
+    };
+
+    // ФУНКЦИИ ПРЕДПРОСМОТРА КАРТОЧКИ
+
+    function imagePreview(evt) {
+        popupOpen(imagePopup);
+        imageView.src = evt.target.src;
+        imageText.textContent = evt.target.alt;
+    };
+
+    imageCloseButton.addEventListener('click', () => popupClose(imagePopup));
+
+    return cardsElem;
 };
 
-initialCards.map(renderCards);
-// ПОПАП ПРОФИЛЯ
+function renderCard(elem) {
+    card.prepend(elem);
+};
 
-function textCapture() {
+// ДОБАВЛЕНИЕ ДЕФОЛТНОГО МАССИВА КАРТОЧЕК
+initialCards.forEach(function (elem) {
+    const title = elem.name;
+    const image = elem.link;
+
+    renderCard(createCard(title, image));
+});
+
+// POPUPS
+
+function popupOpen(item) {
+    item.classList.add('popup_opened');
+};
+
+function popupClose(item) {
+    item.classList.remove('popup_opened');
+};
+
+function popupIdRender() {
+    popupOpen(idPopup);
     nameInput.value = yourName.textContent;
     jobInput.value = description.textContent;
 };
 
-function popupOpen() {
-    IdPopup.classList.add('popup_opened');
-    textCapture();
-};
-
-function popupClose() {
-    IdPopup.classList.remove('popup_opened');
-};
-
-function IdFormSubmitHandler(evt) {
+function idFormSubmitHandler(evt) {
     evt.preventDefault();
     yourName.textContent = nameInput.value;
     description.textContent = jobInput.value;
 
-    popupClose();
+    popupClose(idPopup);
+
+    nameInput.value = '';
+    jobInput.value = '';
 };
 
-// ПОПАП ГАЛЕРЕИ
-
-function editGallery() {
-    galleryPopup.classList.add('popup_opened');
-}
-
-function closeGallery() {
-    galleryPopup.classList.remove('popup_opened');
-}
-
-function addCard(evt) {
+function galleryFormSubmitHandler(evt) {
     evt.preventDefault();
-    const cardsElem = cardsTemplate.querySelector('.cards__block').cloneNode(true);
-    const cardImage = cardsElem.querySelector('.cards__image');
-    cardImage.src = imageInput.value;
-    cardImage.alt = placeInput.value;
-    cardImage.addEventListener('click', imagePreview);
-    cardsElem.querySelector('.cards__title').textContent = placeInput.value;
-    cardsElem.querySelector('.cards__like-button').addEventListener('click', likeIt)
-    cardsElem.querySelector('.cards__delete-button').addEventListener('click', cardRemove);
-    renderCard(cardsElem);
-
-    closeGallery();
-};
-
-function renderCard(element) {
-    card.prepend(element);
-};
-
-// ФУНКЦИЯ ЛАЙКА
-
-function likeIt() {
-    this.classList.toggle('cards__like-button_active')
-};
-
-// ФУНКЦИЯ УДАЛЕНИЯ КАРТОЧКИ
-
-function cardRemove(evt) {
-    evt.target.closest('.cards__block').remove()
-}
-
-// ФУНКЦИИ ПРЕДПРОСМОТРА КАРТОЧКИ
-
-function imagePreview(evt) {
-    imagePopup.classList.toggle('popup_opened')
-    imageView.src = evt.target.src;
-    imageText.textContent = evt.target.alt;
+    const title = placeInput.value;
+    const image = imageInput.value;
+    renderCard(createCard(title, image));
+    popupClose(galleryPopup)
+    placeInput.value = '';
+    imageInput.value = '';
 }
 
 // ОБРАБОТЧИКИ
 
-popupOpenButton.addEventListener('click', popupOpen);
-popupCloseButton.addEventListener('click', popupClose);
-formElement.addEventListener('submit', IdFormSubmitHandler);
-formElementGallery.addEventListener('submit', addCard);
-galleryEdit.addEventListener('click', editGallery);
-galleryPopupCloseButton.addEventListener('click', closeGallery);
+popupOpenButton.addEventListener('click', popupIdRender);
+popupCloseButton.addEventListener('click', () => popupClose(idPopup));
+formElement.addEventListener('submit', idFormSubmitHandler);
+formElementGallery.addEventListener('submit', galleryFormSubmitHandler);
+galleryEdit.addEventListener('click', () => popupOpen(galleryPopup));
+galleryPopupCloseButton.addEventListener('click', () => popupClose(galleryPopup));
