@@ -20,3 +20,7 @@
         max-width: 358px;
     }
 }
+
+.popup__input:focus::placeholder {
+    color: transparent;
+}

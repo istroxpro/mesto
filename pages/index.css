@@ -44,3 +44,6 @@
 @import url(../blocks/popup/__input/_name/popup__input_profile_name.css);
 @import url(../blocks/popup/__input/_description/popup__input_profile_description.css);
 @import url(../blocks/popup/_opened/popup__opened.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
+@import url(../blocks/popup/__input/_invalid/popup__input_invalid.css);

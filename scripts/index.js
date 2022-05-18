@@ -1,58 +1,22 @@
 'use strict'
 // ПЕРЕМЕННЫЕ
-
-const idPopup = document.querySelector('.popup');
+const popupList = document.querySelectorAll('.popup');
+const idPopup = document.querySelector('.popup_profile');
 const galleryPopup = document.querySelector('.popup_gallery');
 const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close_gallery');
 const popupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = idPopup.querySelector('.popup__close');
+const popupCloseButton = document.querySelector('.popup__close');
 const formElement = document.querySelector('.popup__form');
 const formElementGallery = document.querySelector('.popup__form_gallery');
 const nameInput = document.querySelector('.popup__input_profile_name');
 const jobInput = document.querySelector('.popup__input_profile_description');
 const yourName = document.querySelector('.profile__title');
 const description = document.querySelector('.profile__subtitle');
-const closeButton = document.getElementsByClassName('cards__delete-button')
 const cardsTemplate = document.querySelector('.cards__template').content;
 const card = document.querySelector('.cards');
 const galleryEdit = document.querySelector('.profile__add-button');
 const placeInput = document.querySelector('.popup__input_gallery_name');
 const imageInput = document.querySelector('.popup__input_gallery_url');
-
-// ДЕФОЛТНЫЙ МАССИВ КАРТОЧЕК
-
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Архыз'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Челябинская область'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-        alt: 'Иваново'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-        alt: 'Камчатка'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-        alt: 'Холмогорский район'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-        alt: 'Байкал'
-    }
-];
-
 const imagePopup = document.querySelector('.popup_view');
 const imageExpand = document.querySelectorAll('.cards__image');
 const imageCloseButton = imagePopup.querySelector('.popup__close_image');
@@ -112,13 +76,35 @@ initialCards.forEach(function (elem) {
 
 // POPUPS
 
+// Закрытие попапа кнопкой ESC
+const pressKeyToClose = (event) => {
+    if (event.key === "Escape") {
+        const currentPopup = document.querySelector('.popup_opened');
+        popupClose(currentPopup)
+    }
+};
+
 function popupOpen(item) {
     item.classList.add('popup_opened');
+    document.addEventListener('keydown', pressKeyToClose);
 };
 
 function popupClose(item) {
     item.classList.remove('popup_opened');
+    document.removeEventListener('keydown', pressKeyToClose);
 };
+
+// Закрытие попапа кликом по оверлею
+popupList.forEach((popup) => {
+    popup.addEventListener('click', (event) => {
+        if (
+            event.target.classList.contains('popup') ||
+            event.target.classList.contains('popup__close')
+        ) {
+            popupClose(popup);
+        }
+    });
+})
 
 function popupIdRender() {
     popupOpen(idPopup);
