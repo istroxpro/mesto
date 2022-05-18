@@ -36,30 +36,34 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_profile">
             <div class="popup__container">
                 <button type="button" class="popup__close"><img class="popup__close-image" src="./images/Closeicon.svg"
                         alt="Закрыть"></button>
-                <form name="profile" class="popup__form">
+                <form id="profile" name="profile" class="popup__form" novalidate>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input popup__input_profile_name" type="text" placeholder="Жак-Ив Кусто"
-                        name="name" required>
-                    <input class="popup__input popup__input_profile_description" type="text"
-                        placeholder="Исследователь океана" name="description" required>
+                    <input id="name" class="popup__input popup__input_profile_name" type="text"
+                        placeholder="Жак-Ив Кусто" name="name" required minlength="2" maxlength="40">
+                    <span class="popup__input-error name-error"></span>
+                    <input id="description" class="popup__input popup__input_profile_description" type="text"
+                        placeholder="Исследователь океана" name="description" required minlength="2" maxlength="200">
+                    <span class="popup__input-error description-error"></span>
                     <button type="submit" class="popup__submit-button">Сохранить</button>
                 </form>
             </div>
         </div>
         <div class="popup popup_gallery">
             <div class="popup__container popup__container_gallery">
-                <form class="popup__form popup__form_gallery" name="gallery">
+                <form id="place" class="popup__form popup__form_gallery" name="gallery" novalidate>
                     <button type="button" class="popup__close popup__close_gallery"><img class="popup__close-image"
                             src="./images/Closeicon.svg" alt="Закрыть"></button>
                     <h2 class="popup__title">Новое место</h2>
-                    <input class="popup__input popup__input_gallery_name" type="text" placeholder="Название" name="name"
-                        required>
-                    <input class="popup__input popup__input_gallery_url" type="url" placeholder="Ссылка на картинку"
-                        name="imageLink" required>
+                    <input id="place_name" class="popup__input popup__input_gallery_name" type="text"
+                        placeholder="Название" name="name" required minlength="2" maxlength="40">
+                    <span class="popup__input-error place_name-error"></span>
+                    <input id="place_image" class="popup__input popup__input_gallery_url" type="url"
+                        placeholder="Ссылка на картинку" name="imageLink" required>
+                    <span class="popup__input-error place_image-error"></span>
                     <button type="submit" class="popup__submit-button popup__submit-button_gallery">Сохранить</button>
                 </form>
             </div>
@@ -83,7 +87,9 @@
             <button type="button" class="cards__delete-button"><img src="./images/Trash.svg" alt="Удалить"></button>
         </li>
     </template>
+    <script src="scripts/cards.js"></script>
     <script src="scripts/index.js"></script>
+    <scrpot src="scripts/validate.js"></scrpot>
 </body>
 
 </html>
