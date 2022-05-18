@@ -17,6 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage, object) => {
 // Скрываем ошибку
 const hideInputError = (formElement, inputElement, object) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = ''
     inputElement.classList.remove(object.inputErrorClass);
     errorElement.classList.remove(object.errorClass);
 };
@@ -34,14 +35,22 @@ const hasInvalidInput = (inputList) => {
         return !inputElement.validity.valid;
     });
 };
+
 // Изменение отображения кнопки сабмита
+const disablePopupButton = (button) => {
+    button.classList.add("popup__submit-button_disabled");
+    button.disabled = "disabled";
+}
+
 const toggleButtonState = (inputList, buttonElement, object) => {
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(object.inactiveButtonClass)
+        disablePopupButton(buttonElement);
     } else {
-        buttonElement.classList.remove(object.inactiveButtonClass)
-    };
+        buttonElement.classList.remove(object.inactiveButtonClass);
+        buttonElement.disabled = "";
+    }
 };
+
 // Установка слушателей на формы
 const setEventListeners = (formElement, object) => {
     const inputList = Array.from(formElement.querySelectorAll(object.inputSelector));
