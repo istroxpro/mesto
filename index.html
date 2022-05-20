@@ -42,12 +42,17 @@
                         alt="Закрыть"></button>
                 <form id="profile" name="profile" class="popup__form" novalidate>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input id="name" class="popup__input popup__input_profile_name" type="text"
-                        placeholder="Жак-Ив Кусто" name="name" required minlength="2" maxlength="40">
-                    <span class="popup__input-error name-error"></span>
-                    <input id="description" class="popup__input popup__input_profile_description" type="text"
-                        placeholder="Исследователь океана" name="description" required minlength="2" maxlength="200">
-                    <span class="popup__input-error description-error"></span>
+                    <div class="popup__fieldset">
+                        <input id="name" class="popup__input popup__input_profile_name" type="text"
+                            placeholder="Жак-Ив Кусто" name="name" required minlength="2" maxlength="40">
+                        <span class="popup__input-error name-error"></span>
+                    </div>
+                    <div class="popup__fieldset">
+                        <input id="description" class="popup__input popup__input_profile_description" type="text"
+                            placeholder="Исследователь океана" name="description" required minlength="2"
+                            maxlength="200">
+                        <span class="popup__input-error description-error"></span>
+                    </div>
                     <button type="submit" class="popup__submit-button">Сохранить</button>
                 </form>
             </div>
@@ -58,12 +63,16 @@
                     <button type="button" class="popup__close popup__close_gallery"><img class="popup__close-image"
                             src="./images/Closeicon.svg" alt="Закрыть"></button>
                     <h2 class="popup__title">Новое место</h2>
-                    <input id="gallery" class="popup__input popup__input_gallery_name" type="text"
-                        placeholder="Название" name="name" required minlength="2" maxlength="40">
-                    <span class="popup__input-error gallery-error"></span>
-                    <input id="capture" class="popup__input popup__input_gallery_url" type="url"
-                        placeholder="Ссылка на картинку" name="imageLink" required>
-                    <span class="popup__input-error capture-error"></span>
+                    <div class="popup__fieldset">
+                        <input id="gallery" class="popup__input popup__input_gallery_name" type="text"
+                            placeholder="Название" name="name" required minlength="2" maxlength="40">
+                        <span class="popup__input-error gallery-error"></span>
+                    </div>
+                    <div class="popup__fieldset">
+                        <input id="capture" class="popup__input popup__input_gallery_url" type="url"
+                            placeholder="Ссылка на картинку" name="imageLink" required>
+                        <span class="popup__input-error capture-error"></span>
+                    </div>
                     <button type="submit" class="popup__submit-button popup__submit-button_gallery">Сохранить</button>
                 </form>
             </div>

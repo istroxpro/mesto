@@ -38,7 +38,7 @@ const hasInvalidInput = (inputList) => {
 
 // Изменение отображения кнопки сабмита
 const disablePopupButton = (button) => {
-    button.classList.add("popup__submit-button_disabled");
+    button.classList.add(base.inactiveButtonClass);
     button.disabled = "disabled";
 }
 
