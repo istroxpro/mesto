@@ -1,0 +1,13 @@
+.popup__fieldset {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    max-width: 238px;
+    width: 100%;
+}
+
+@media (min-width: 520px) {
+    .popup__fieldset {
+        max-width: 358px;
+    }
+}

@@ -34,32 +34,31 @@ function createCard(title, image) {
     cardTitle.textContent = title;
     cardsElem.querySelector('.cards__like-button').addEventListener('click', likeIt);
     cardsElem.querySelector('.cards__delete-button').addEventListener('click', cardRemove);
-    cardsElem.querySelector('.cards__image').addEventListener('click', imagePreview);
-    imageCloseButton.addEventListener('click', imagePreview);
-
-    // ФУНКЦИЯ ЛАЙКА
-
-    function likeIt() {
-        this.classList.toggle('cards__like-button_active')
-    };
-
-    // ФУНКЦИЯ УДАЛЕНИЯ КАРТОЧКИ
-
-    function cardRemove(evt) {
-        evt.target.closest('.cards__block').remove()
-    };
-
-    // ФУНКЦИИ ПРЕДПРОСМОТРА КАРТОЧКИ
-
-    function imagePreview(evt) {
-        popupOpen(imagePopup);
-        imageView.src = evt.target.src;
-        imageText.textContent = evt.target.alt;
-    };
-
-    imageCloseButton.addEventListener('click', () => popupClose(imagePopup));
+    cardImage.addEventListener('click', imagePreview);
 
     return cardsElem;
+};
+
+// ФУНКЦИИ ПРЕДПРОСМОТРА КАРТОЧКИ
+
+function imagePreview(evt) {
+    popupOpen(imagePopup);
+    imageView.src = evt.target.src;
+    imageText.textContent = evt.target.alt;
+};
+
+imageCloseButton.addEventListener('click', () => popupClose(imagePopup));
+
+// ФУНКЦИЯ ЛАЙКА
+
+function likeIt() {
+    this.classList.toggle('cards__like-button_active')
+};
+
+// ФУНКЦИЯ УДАЛЕНИЯ КАРТОЧКИ
+
+function cardRemove(evt) {
+    evt.target.closest('.cards__block').remove()
 };
 
 function renderCard(elem) {
@@ -106,38 +105,39 @@ popupList.forEach((popup) => {
     });
 })
 
-function popupIdRender() {
-    popupOpen(idPopup);
+function renderIdPopup() {
     nameInput.value = yourName.textContent;
     jobInput.value = description.textContent;
+    popupOpen(idPopup);
 };
 
-function idFormSubmitHandler(evt) {
+function handleIdForm(evt) {
     evt.preventDefault();
     yourName.textContent = nameInput.value;
     description.textContent = jobInput.value;
-
     popupClose(idPopup);
-
-    nameInput.value = '';
-    jobInput.value = '';
+    evt.target.reset();
 };
 
-function galleryFormSubmitHandler(evt) {
+function handleGalleryForm(evt) {
     evt.preventDefault();
     const title = placeInput.value;
     const image = imageInput.value;
     renderCard(createCard(title, image));
     popupClose(galleryPopup)
-    placeInput.value = '';
-    imageInput.value = '';
+    evt.target.reset();
 }
 
-// ОБРАБОТЧИКИ
+// Слушатели
 
-popupOpenButton.addEventListener('click', popupIdRender);
+popupOpenButton.addEventListener('click', renderIdPopup);
 popupCloseButton.addEventListener('click', () => popupClose(idPopup));
-formElement.addEventListener('submit', idFormSubmitHandler);
-formElementGallery.addEventListener('submit', galleryFormSubmitHandler);
-galleryEdit.addEventListener('click', () => popupOpen(galleryPopup));
+formElement.addEventListener('submit', handleIdForm);
+formElementGallery.addEventListener('submit', handleGalleryForm);
+galleryEdit.addEventListener('click', () => {
+    const submitButton = galleryPopup.querySelector('.popup__submit-button');
+    submitButton.classList.add('popup__submit-button_disabled');
+    submitButton.disabled = "disabled";
+    popupOpen(galleryPopup);
+});
 galleryPopupCloseButton.addEventListener('click', () => popupClose(galleryPopup));
