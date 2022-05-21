@@ -22,6 +22,7 @@ const imageExpand = document.querySelectorAll('.cards__image');
 const imageCloseButton = imagePopup.querySelector('.popup__close_image');
 const imageView = document.querySelector('.popup__imgs');
 const imageText = document.querySelector('.popup__title_image');
+const submitButton = galleryPopup.querySelector('.popup__submit-button');
 
 // ФУНКЦИИ
 
@@ -135,7 +136,6 @@ popupCloseButton.addEventListener('click', () => popupClose(idPopup));
 formElement.addEventListener('submit', handleIdForm);
 formElementGallery.addEventListener('submit', handleGalleryForm);
 galleryEdit.addEventListener('click', () => {
-    const submitButton = galleryPopup.querySelector('.popup__submit-button');
     submitButton.classList.add('popup__submit-button_disabled');
     submitButton.disabled = "disabled";
     popupOpen(galleryPopup);
