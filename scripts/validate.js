@@ -37,14 +37,10 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Изменение отображения кнопки сабмита
-const disablePopupButton = (button) => {
-    button.classList.add(base.inactiveButtonClass);
-    button.disabled = "disabled";
-}
-
 const toggleButtonState = (inputList, buttonElement, object) => {
     if (hasInvalidInput(inputList)) {
-        disablePopupButton(buttonElement);
+        buttonElement.classList.add(object.inactiveButtonClass);
+        buttonElement.disabled = "disabled";
     } else {
         buttonElement.classList.remove(object.inactiveButtonClass);
         buttonElement.disabled = "";

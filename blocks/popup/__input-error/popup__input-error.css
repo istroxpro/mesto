@@ -7,12 +7,12 @@
   line-height: 1.25;
   z-index: 100;
   position: absolute;
-  top: 65px;
+  top: 55px;
   left: 0;
   }
 
   @media(max-width: 519px) {
     .popup__input-error {
-      padding-left: 22px;
+      top: 60px;
     }
   }
