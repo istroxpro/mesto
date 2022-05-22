@@ -64,6 +64,7 @@ function cardRemove(evt) {
 
 function renderCard(elem) {
     card.prepend(elem);
+    disableSubmitButton(submitButton, base)
 };
 
 // ДОБАВЛЕНИЕ ДЕФОЛТНОГО МАССИВА КАРТОЧЕК
@@ -135,9 +136,5 @@ popupOpenButton.addEventListener('click', renderIdPopup);
 popupCloseButton.addEventListener('click', () => popupClose(idPopup));
 formElement.addEventListener('submit', handleIdForm);
 formElementGallery.addEventListener('submit', handleGalleryForm);
-galleryEdit.addEventListener('click', () => {
-    submitButton.classList.add('popup__submit-button_disabled');
-    submitButton.disabled = "disabled";
-    popupOpen(galleryPopup);
-});
+galleryEdit.addEventListener('click', () => popupOpen(galleryPopup));
 galleryPopupCloseButton.addEventListener('click', () => popupClose(galleryPopup));

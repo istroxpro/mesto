@@ -36,11 +36,15 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
+const disableSubmitButton = (buttonElement, object) => {
+    buttonElement.classList.add(object.inactiveButtonClass);
+    buttonElement.disabled = "disabled";
+}
+
 // Изменение отображения кнопки сабмита
 const toggleButtonState = (inputList, buttonElement, object) => {
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(object.inactiveButtonClass);
-        buttonElement.disabled = "disabled";
+        disableSubmitButton(buttonElement, object)
     } else {
         buttonElement.classList.remove(object.inactiveButtonClass);
         buttonElement.disabled = "";
