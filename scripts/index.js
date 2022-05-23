@@ -64,7 +64,6 @@ function cardRemove(evt) {
 
 function renderCard(elem) {
     card.prepend(elem);
-    disableSubmitButton(submitButton, base)
 };
 
 // ДОБАВЛЕНИЕ ДЕФОЛТНОГО МАССИВА КАРТОЧЕК
@@ -128,6 +127,7 @@ function handleGalleryForm(evt) {
     renderCard(createCard(title, image));
     popupClose(galleryPopup)
     evt.target.reset();
+    disableSubmitButton(submitButton, base)
 }
 
 // Слушатели
