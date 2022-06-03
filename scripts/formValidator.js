@@ -52,7 +52,7 @@ export class FormValidator {
         }
     };
 
-    _resetValidation() {
+    resetValidation() {
         this.toggleButtonState();
 
         this._inputList.forEach((inputElement) => {
