@@ -32,7 +32,7 @@ const pressKeyToClose = (event) => {
 export function openPopup(item) {
     item.classList.add('popup_opened');
     document.addEventListener('keydown', pressKeyToClose);
-    galleryValidation._resetValidation();
+    galleryValidation.resetValidation();
 };
 
 function closePopup(item) {
@@ -44,8 +44,7 @@ data.popupList.forEach((popup) => {
     popup.addEventListener('click', (event) => {
         if (
             event.target.classList.contains('popup') ||
-            event.target.classList.contains('popup__close') ||
-            event.target.classList.contains('popup__close-image')
+            event.target.classList.contains('popup__close')
         ) {
             closePopup(popup);
         }
@@ -91,8 +90,6 @@ data.popupOpenButton.addEventListener('click', renderIdPopup);
 data.formElement.addEventListener('submit', handleIdForm);
 data.formElementGallery.addEventListener('submit', handleGalleryForm);
 data.galleryEdit.addEventListener('click', () => openPopup(data.galleryPopup));
-data.galleryPopupCloseButton.addEventListener('click', () => closePopup(data.galleryPopup));
-data.imageCloseButton.addEventListener('click', () => closePopup(data.imagePopup));
 
 const profileValidation = new FormValidator(base, data.formElement);
 profileValidation.enableValidation();
