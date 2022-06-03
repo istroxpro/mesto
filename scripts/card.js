@@ -1,6 +1,6 @@
 import * as data from "./variables.js";
 import {
-    popupOpen
+    openPopup
 } from "./index.js";
 export class Card {
     constructor(data, cardSelector) {
@@ -22,8 +22,9 @@ export class Card {
     };
 
     _imagePreview() {
-        popupOpen(data.imagePopup);
+        openPopup(data.imagePopup);
         data.imageView.src = this._image;
+        data.imageView.alt = this._title;
         data.imageText.textContent = this._title;
     };
 
