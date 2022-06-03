@@ -25,16 +25,17 @@ renderInitialCards();
 const pressKeyToClose = (event) => {
     if (event.key === "Escape") {
         const currentPopup = document.querySelector('.popup_opened');
-        popupClose(currentPopup)
+        closePopup(currentPopup)
     }
 };
 
-export function popupOpen(item) {
+export function openPopup(item) {
     item.classList.add('popup_opened');
     document.addEventListener('keydown', pressKeyToClose);
+    galleryValidation._resetValidation();
 };
 
-function popupClose(item) {
+function closePopup(item) {
     item.classList.remove('popup_opened');
     document.removeEventListener('keydown', pressKeyToClose);
 };
@@ -43,24 +44,25 @@ data.popupList.forEach((popup) => {
     popup.addEventListener('click', (event) => {
         if (
             event.target.classList.contains('popup') ||
-            event.target.classList.contains('popup__close')
+            event.target.classList.contains('popup__close') ||
+            event.target.classList.contains('popup__close-image')
         ) {
-            popupClose(popup);
+            closePopup(popup);
         }
     });
-})
+});
 
 function renderIdPopup() {
     data.nameInput.value = data.yourName.textContent;
     data.jobInput.value = data.description.textContent;
-    popupOpen(data.idPopup);
+    openPopup(data.idPopup);
 };
 
 function handleIdForm(evt) {
     evt.preventDefault();
     data.yourName.textContent = data.nameInput.value;
     data.description.textContent = data.jobInput.value;
-    popupClose(data.idPopup);
+    closePopup(data.idPopup);
     profileValidation.toggleButtonState();
     evt.target.reset();
 };
@@ -71,10 +73,10 @@ function handleGalleryForm(evt) {
         name: data.placeInput.value,
         link: data.imageInput.value
     }));
-    popupClose(data.galleryPopup);
-    evt.target.reset();
+    closePopup(data.galleryPopup);
     galleryValidation.toggleButtonState();
-}
+    evt.target.reset();
+};
 
 const base = {
     formSelector: '.popup__form',
@@ -86,12 +88,11 @@ const base = {
 };
 
 data.popupOpenButton.addEventListener('click', renderIdPopup);
-data.popupCloseButton.addEventListener('click', () => popupClose(data.idPopup));
 data.formElement.addEventListener('submit', handleIdForm);
 data.formElementGallery.addEventListener('submit', handleGalleryForm);
-data.galleryEdit.addEventListener('click', () => popupOpen(data.galleryPopup));
-data.galleryPopupCloseButton.addEventListener('click', () => popupClose(data.galleryPopup));
-data.imageCloseButton.addEventListener('click', () => popupClose(data.imagePopup));
+data.galleryEdit.addEventListener('click', () => openPopup(data.galleryPopup));
+data.galleryPopupCloseButton.addEventListener('click', () => closePopup(data.galleryPopup));
+data.imageCloseButton.addEventListener('click', () => closePopup(data.imagePopup));
 
 const profileValidation = new FormValidator(base, data.formElement);
 profileValidation.enableValidation();
@@ -103,7 +104,7 @@ galleryValidation.enableValidation();
 
 // Старый код.
 //function imagePreview(evt) {
-//popupOpen(data.imagePopup);
+//openPopup(data.imagePopup);
 //imageView.src = evt.target.src;
 //imageText.textContent = evt.target.alt;
 //};

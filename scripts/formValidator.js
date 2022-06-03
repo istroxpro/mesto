@@ -51,6 +51,16 @@ export class FormValidator {
             this._buttonElement.disabled = "";
         }
     };
+
+    _resetValidation() {
+        this.toggleButtonState();
+
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement)
+        });
+
+    };
+
     _setEventListeners() {
         this.toggleButtonState();
         this._inputList.forEach((inputElement) => {
