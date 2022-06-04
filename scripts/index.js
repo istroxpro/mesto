@@ -88,7 +88,10 @@ const base = {
 data.popupOpenButton.addEventListener('click', renderIdPopup);
 data.formElement.addEventListener('submit', handleIdForm);
 data.formElementGallery.addEventListener('submit', handleGalleryForm);
-data.galleryEdit.addEventListener('click', () => openPopup(data.galleryPopup));
+data.galleryEdit.addEventListener('click', () => {
+    openPopup(data.galleryPopup)
+    galleryValidation.resetValidation();
+});
 
 const profileValidation = new FormValidator(base, data.formElement);
 profileValidation.enableValidation();
