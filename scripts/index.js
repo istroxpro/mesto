@@ -32,7 +32,6 @@ const pressKeyToClose = (event) => {
 export function openPopup(item) {
     item.classList.add('popup_opened');
     document.addEventListener('keydown', pressKeyToClose);
-    galleryValidation.resetValidation();
 };
 
 function closePopup(item) {
